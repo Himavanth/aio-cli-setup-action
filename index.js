@@ -14,8 +14,10 @@ const exec = require('@actions/exec')
 
 try {
   const os = core.getInput('os')
+  const version = core.getInput('version')
   console.log(" OS - " + os)
-   runCommand(os)
+  console.log(" Version - " + version)
+   runCommand(os, version)
    .then(() => {
      console.log("action completed")
    })
@@ -38,6 +40,6 @@ async function runCommand(os, version) {
   if(os && os.startsWith("ubuntu"))
     commandStr = 'sudo ' + commandStr
   await exec.exec('echo ' + commandStr)
-  //await exec.exec(commandStr)
-  //await exec.exec('aio -v')
+  await exec.exec(commandStr)
+  await exec.exec('aio -v')
 }
