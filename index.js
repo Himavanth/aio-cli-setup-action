@@ -29,11 +29,15 @@ try {
 
 async function runCommand(os, version) {
   let commandStr = 'npm install -g @adobe/aio-cli'
-  if(version)
+  console.log(os)
+  console.log(version)
+  if(version) {
+    console.log('in if')
     commandStr = commandStr + '@' + version
+  }
   if(os && os.startsWith("ubuntu"))
     commandStr = 'sudo ' + commandStr
-
-  await exec.exec(commandStr)
-  await exec.exec('aio -v')
+  await exec.exec('echo ' + commandStr)
+  //await exec.exec(commandStr)
+  //await exec.exec('aio -v')
 }
